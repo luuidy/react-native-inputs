@@ -1,0 +1,12 @@
+{
+  "name": "react-native-inputs",
+  "displayName": "react-native-inputs",
+  "expo": {
+    "name": "react-native-inputs",
+    "slug": "react-native-inputs",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
