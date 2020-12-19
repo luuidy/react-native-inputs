@@ -1,21 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, View, TextInput, Button, Alert} from 'react-native';
 
 export default function App() {
+  const [inputs, setInputs] = useState({
+    name: '',
+    email: '',
+  });
+
+  const alert = () =>{
+    Alert.alert(inputs.name, inputs.email)
+    setInputs({
+      name: '',
+      email: '',
+    })
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <TextInput
+        style={styles.inputs}
+        placeholder="Nome"
+        onChangeText={text => setInputs({...inputs, name: text})}
+        value={inputs.name}
+      />
+      <TextInput
+        placeholder="Email"
+        style={styles.inputs}
+        onChangeText={text => setInputs({...inputs, email: text})}
+        value={inputs.email}
+      />
+      <Button title="Alert" onPress={alert}/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    padding: 20,
+    paddingTop: 50,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+
+  inputs: {
+    borderColor: '#D5D5D5', 
+    borderWidth: 1,
+    padding: 10,
+    paddingLeft: 15,
+    marginBottom: 20,
+    borderRadius: 15,
+  }
 });
+
+
