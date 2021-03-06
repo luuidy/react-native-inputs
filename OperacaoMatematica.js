@@ -1,11 +1,16 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, TextInput, Button, Alert} from 'react-native';
+import * as Speech from 'expo-speech';
 
 export default function App() {
     const [inputs, setInputs] = useState({
       n1: null,
       n2: null,
     });
+
+    const speak = (text)=>{
+      Speech.speak(`${text}`, {language: 'pt'})
+    }
   
 
     return (
@@ -23,16 +28,32 @@ export default function App() {
           value={inputs.n2}
         />
         <View style={{marginBottom: 15}}>
-            <Button title="Somar" onPress={()=> Alert.alert(`Adição: ${parseFloat(inputs.n1) + parseFloat(inputs.n2)}`)}/>
+            <Button title="Somar" onPress={()=> {
+              const result = parseFloat(inputs.n1) + parseFloat(inputs.n2)
+              Alert.alert(`Adição: ${result}`)
+              speak(result)
+              }}/>
         </View>
         <View style={{marginBottom: 15}}>
-            <Button title="Subtrair" onPress={()=> Alert.alert(`Subtração: ${inputs.n1 - inputs.n2}`)}/>
+            <Button title="Subtrair" onPress={()=> {
+              const result = parseFloat(inputs.n1) - parseFloat(inputs.n2)
+              Alert.alert(`Subtração: ${result}`)
+              speak(result)
+            }}/>
         </View>
         <View style={{marginBottom: 15}}>
-            <Button title="Dividir" onPress={()=> Alert.alert(`Divisão: ${parseFloat(inputs.n1) / parseFloat(inputs.n2)}`)}/>
+            <Button title="Dividir" onPress={()=>  {
+              const result = parseFloat(inputs.n1) / parseFloat(inputs.n2)
+              Alert.alert(`Divisão: ${result}`)
+              speak(result)
+          }}/>
         </View>
         <View style={{marginBottom: 15}}>
-            <Button title="Multiplicar" onPress={()=> Alert.alert(`Multiplicação: ${parseFloat(inputs.n1) * parseFloat(inputs.n2)}`)}/>
+            <Button title="Multiplicar" onPress={()=> {
+              const result = parseFloat(inputs.n1) * parseFloat(inputs.n2)
+              Alert.alert(`Multiplicação: ${result}`)
+              speak(result)
+          }}/>
         </View>
       </View>
     );
